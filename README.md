@@ -15,7 +15,7 @@ Before running the program, ensure you have the following:
 
 1. Clone or download this repository to your local machine.
 
-    git clone https://github.com/your-repo/word-count-console-app.git
+    git clone https://github.com/malkyfried/CheckPointTask.git
 
 2. Open the solution file in Visual Studio or your preferred C# IDE.
 
