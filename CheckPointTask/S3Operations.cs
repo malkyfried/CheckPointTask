@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,15 +22,25 @@ namespace CheckPointTask
             string json = JsonConvert.SerializeObject(wordCount);
 
             using IAmazonS3 client = new AmazonS3Client(region);
-            var request = new PutObjectRequest
-            {
-                BucketName = bucketName,
-                Key = keyName,
-                ContentBody = json
-            };
 
             try
             {
+                // Check if the key already exists
+                bool keyExists = await KeyExistsAsync(client, bucketName, keyName);
+
+                if (keyExists)
+                {
+                    Console.WriteLine($"Key '{keyName}' already exists in S3 bucket '{bucketName}'.");
+                    return;
+                }
+
+                var request = new PutObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = keyName,
+                    ContentBody = json
+                };
+
                 await client.PutObjectAsync(request);
                 Console.WriteLine($"Word count results uploaded to S3 bucket '{bucketName}' with key '{keyName}'.");
             }
@@ -40,6 +51,19 @@ namespace CheckPointTask
             catch (AmazonServiceException ex)
             {
                 Console.WriteLine($"Error uploading to S3: {ex.Message}");
+            }
+        }
+
+        private static async Task<bool> KeyExistsAsync(IAmazonS3 client, string bucketName, string keyName)
+        {
+            try
+            {
+                var metadata = await client.GetObjectMetadataAsync(bucketName, keyName);
+                return true; // Key exists
+            }
+            catch (AmazonS3Exception ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                return false; // Key doesn't exist
             }
         }
 
