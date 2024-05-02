@@ -1,7 +1,7 @@
 ﻿using CheckPointTask;
 
 //Count amount of each word
-Dictionary<string, int> wordCount= CountWords.Count("./InputText1.txt");
+Dictionary<string, int> wordCount= CountWords.Count("../../../Data/InputText1.txt");
 
 Console.WriteLine("Word Count Results:");
 foreach (var pair in wordCount)
