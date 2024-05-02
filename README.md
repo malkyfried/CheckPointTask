@@ -1,33 +1,33 @@
-# CheckPointTask - Word count system
+# Word Count system
  
-This program implements a word count functionality that analyzes a text file,
+This console application is written in C# and is designed to count the occurrences of each word in a given text file,
 
-calculates word frequencies, and uploads the results to an Amazon S3 bucket. 
+upload the results to an Amazon S3 bucket, and then download the results from the S3 bucket.
 
-It can also retrieve and display word counts from existing data in S3.
+## Prerequisites
 
-## Features:
+Before running the program, ensure you have the following:
 
-Analyzes text files for word frequencies.
+- .NET Core SDK installed on your machine.
+- AWS account credentials configured with access to the desired S3 bucket.
 
-Uploads word count data in JSON format to an S3 bucket.
+## Installation
 
-Retrieves word count data for a specific file from S3 bucket.
+1. Clone or download this repository to your local machine.
 
-## Requirements:
+    git clone https://github.com/your-repo/word-count-console-app.git
 
-AWS credentials with S3 access are required.
+2. Open the solution file in Visual Studio or your preferred C# IDE.
 
-### Usage
+43. Build the solution to restore packages and compile the project.
 
-**CountWords Class**: Contains functionality to count the occurrences of each word in a specified text file.
+## Usage`
 
-**S3Operations Class**: Handles the interaction with Amazon S3 for uploading and downloading word count results.
+1. Run the program. The word count results will be calculated for the specified file, and then uploaded to the configured S3 bucket.
 
-## Technologies Used:
+2. After the upload is successful, the program will automatically download the word count results from the S3 bucket and display them in the console.
 
-**Console application:** The project is built using console application.
+## Configuration
 
-**C#:** Backend logic and business logic are implemented in C#.
+- Ensure you have an AWS S3 bucket set up. Update the `bucketName` and `region` variables in the `S3Operations.cs` file with your bucket's details.
 
-**Visual Studio:** The project is developed using Visual Studio IDE.
