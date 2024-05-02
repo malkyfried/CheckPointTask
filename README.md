@@ -18,6 +18,11 @@ Retrieves word count data for a specific file from S3 bucket.
 
 AWS credentials with S3 access are required.
 
+### Usage
+
+**CountWords Class**: Contains functionality to count the occurrences of each word in a specified text file.
+**S3Operations Class**: Handles the interaction with Amazon S3 for uploading and downloading word count results.
+
 ## Technologies Used:
 
 **Console application:** The project is built using console application.
