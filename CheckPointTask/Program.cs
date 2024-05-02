@@ -1,16 +1,10 @@
 ﻿using CheckPointTask;
 
-//Count amount of each word
-Dictionary<string, int> wordCount= CountWords.Count("../../../Data/InputText1.txt");
+string pathToDataFolder = "../../../Data/";
+string fileName = "InputText2.txt";
 
-Console.WriteLine("Word Count Results:");
-foreach (var pair in wordCount)
-{
-    Console.WriteLine($"{pair.Key}: {pair.Value}");
-}
-
-
-string fileName = "InputText1.txt";
+// Count amount of each word in specific file
+Dictionary<string, int> wordCount= CountWords.Count(pathToDataFolder + fileName);
 
 // Store the results in S3 bucket
 //await S3Operations.UploadToS3Async(fileName, wordCount);
